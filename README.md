@@ -1,6 +1,6 @@
 # Quasar Bex (quasar-bex-poc)
 
-A Quasar Project to develop a easy browser extension to delete an email
+A Quasar Project to develop a easy browser extension to delete emails.
 
 ## Install the dependencies
 ```bash
@@ -8,6 +8,12 @@ yarn
 # or
 npm install
 ```
+
+### Start the app in bex mode
+```bash
+quasar dev -m bex
+```
+
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
