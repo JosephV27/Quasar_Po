@@ -4,6 +4,8 @@
   <div>
     <input type="text" placeholder="enter email id" v-model="emailId" />
     <button type="button" @click="removeEmail">Remove</button>
+    <button type="button" @click="getEmails">Get emails</button>
+    <button type="button" @click="getEmailInfo">Get email info</button>
   </div>
 </template>
 
@@ -13,6 +15,8 @@ export default {
     return {
       emailId: null,
       token: null,
+      emails: [],
+      id: null,
     };
   },
   created() {
@@ -20,6 +24,7 @@ export default {
       this.token = result.token;
     });
   },
+
   methods: {
     removeEmail() {
       console.log("Email ID: ", this.emailId);
@@ -38,12 +43,43 @@ export default {
           body: null,
         }
       )
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log("Something went wrong!", error);
-        });
+        .then((response) => console.log(response))
+        .catch((error) => console.log("Something went wrong!", error));
+    },
+
+    getEmails() {
+      fetch(
+        "https://gmail.googleapis.com/gmail/v1/users/me/messages/?alt=json&access_token=" +
+          this.token
+      )
+        .then((response) => response.json())
+        .then((data) => (this.emails = data.messages))
+        .catch((error) => console.log("Something went wrong!", error));
+    },
+
+    getEmailInfo() {
+      this.id = this.emails[0]["id"];
+      fetch(
+        "https://gmail.googleapis.com/gmail/v1/users/me/messages/" +
+          this.id +
+          "?alt=json&access_token=" +
+          this.token
+      )
+        .then((response) => response.json())
+        .then((data) => this.getEmailDate(data["payload"]["headers"]))
+        .catch((error) => console.log("Something went wrong!", error));
+    },
+
+    getEmailDate(headers) {
+      this.printDate(headers.filter(checkDate));
+
+      function checkDate(info) {
+        return info["name"] == "Date";
+      }
+    },
+
+    printDate(date) {
+      console.log(date);
     },
   },
 };

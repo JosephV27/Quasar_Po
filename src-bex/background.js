@@ -17,7 +17,6 @@ chrome.alarms.onAlarm.addListener(() => {
   refreshToken();
 });
 
-
 function refreshToken() {
   chrome.identity.getAuthToken(
     {
