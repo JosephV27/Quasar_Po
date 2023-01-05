@@ -37,7 +37,7 @@
   ],
 
   "oauth2": {
-    "client_id": "931728989241-188gsg4chcabph6ek99k10qhdsta5aea.apps.googleusercontent.com",
+    "client_id": "931728989241-03ld8376odvdnmjs2om14s0mbba8ctar.apps.googleusercontent.com", 
     "scopes": ["https://mail.google.com/"]
   }
 }

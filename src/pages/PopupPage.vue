@@ -6,10 +6,13 @@
     <button type="button" @click="removeEmail">Remove</button>
     <button type="button" @click="getEmails">Get emails</button>
     <button type="button" @click="getEmailInfo">Get email info</button>
+    <button type="button" @click="writeUserInfo">Write User Info</button>
   </div>
 </template>
 
 <script>
+import { getDatabase, ref, set } from "firebase/database";
+
 export default {
   data() {
     return {
@@ -58,6 +61,7 @@ export default {
     },
 
     getEmailInfo() {
+      console.log(this.emails);
       this.id = this.emails[0]["id"];
       fetch(
         "https://gmail.googleapis.com/gmail/v1/users/me/messages/" +
@@ -81,6 +85,15 @@ export default {
     printDate(date) {
       console.log(date);
     },
+
+    writeUserInfo() {
+      const db = getDatabase();
+      console.log("writing in the database");
+      set(ref(db, 'emails/'), {
+      email: "mail",
+      amount: 4
+  });
+    }
   },
 };
 </script>
