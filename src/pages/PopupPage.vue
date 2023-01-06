@@ -157,7 +157,6 @@
 
 <script>
 import { getDatabase, ref, set } from "firebase/database";
-import { url } from "inspector";
 
 export default {
   data() {
