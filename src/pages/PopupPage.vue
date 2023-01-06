@@ -1,12 +1,30 @@
 <template>
-  <div>Welcome to the extension to remove emails</div>
-  <br />
-  <div>
-    <input type="text" placeholder="enter email id" v-model="emailId" />
-    <button type="button" @click="removeEmail">Remove</button>
-    <button type="button" @click="getEmails">Get emails</button>
-    <button type="button" @click="getEmailInfo">Get email info</button>
-    <button type="button" @click="writeUserInfo">Write User Info</button>
+  <div class="row">
+    <div class="col-12">
+      <div class="title">Impactless Email</div>
+      <div class="subtitle">CURRENT IMPACT</div>
+    </div>
+  </div>
+  <div class="row inline" id="test">
+    <img class="logo" src="~assets/leaf.png" alt="leaf logo" />
+    <div class="data">
+      <div class="numbers">28.42 g</div>
+      <div class="data">CO2/email saved</div>
+    </div>
+  </div>
+  <div class="row inline" id="test">
+    <img class="logo" src="~assets/trash.png" alt="trash logo" />
+    <div>
+      <div class="numbers">12.302</div>
+      <div class="data">Emails deleted</div>
+    </div>
+  </div>
+  <div class="row inline" id="test">
+    <img class="logo" src="~assets/server.png" alt="server logo" />
+    <div>
+      <div class="numbers">4.3 GB</div>
+      <div class="data">Cloud Storage saved</div>
+    </div>
   </div>
 </template>
 
@@ -89,11 +107,11 @@ export default {
     writeUserInfo() {
       const db = getDatabase();
       console.log("writing in the database");
-      set(ref(db, 'emails/'), {
-      email: "mail",
-      amount: 4
-  });
-    }
+      set(ref(db, "emails/"), {
+        email: "mail",
+        amount: 4,
+      });
+    },
   },
 };
 </script>
